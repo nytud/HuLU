@@ -4,3 +4,6 @@
 [submodule "HuSST"]
 	path = HuSST
 	url = https://github.com/nytud/HuSST.git
+[submodule "HuCOLA"]
+	path = HuCOLA
+	url = https://github.com/nytud/HuCOLA.git
