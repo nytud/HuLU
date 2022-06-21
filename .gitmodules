@@ -7,3 +7,6 @@
 [submodule "HuCOLA"]
 	path = HuCOLA
 	url = https://github.com/nytud/HuCOLA.git
+[submodule "HuCoPA"]
+	path = HuCoPA
+	url = https://github.com/nytud/HuCoPA.git
