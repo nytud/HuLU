@@ -1,0 +1,3 @@
+[submodule "HuWNLI"]
+	path = HuWNLI
+	url = https://github.com/nytud/HuWNLI.git
