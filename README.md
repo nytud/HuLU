@@ -30,6 +30,6 @@ Ligeti-Nagy, N., Ferenczi, G., Héja, E., Jelencsik-Mátyus, K., Laki, L. J., Va
   address = {Szeged},
   publisher = {Szegedi Tudományegyetem, Informatikai Intézet}
 }
-
+```
 
 and to any other the references listed in the readme files of the individual corpora. 
