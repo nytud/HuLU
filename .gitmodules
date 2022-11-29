@@ -10,3 +10,6 @@
 [submodule "HuCoPA"]
 	path = HuCoPA
 	url = https://github.com/nytud/HuCoPA.git
+[submodule "HuRTE"]
+	path = HuRTE
+	url = https://github.com/nytud/HuRTE.git
