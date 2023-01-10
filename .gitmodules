@@ -13,3 +13,6 @@
 [submodule "HuRTE"]
 	path = HuRTE
 	url = https://github.com/nytud/HuRTE.git
+[submodule "HuCommitmentBank"]
+	path = HuCommitmentBank
+	url = https://github.com/nytud/HuCommitmentBank
