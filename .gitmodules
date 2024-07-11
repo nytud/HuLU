@@ -1,6 +1,6 @@
 [submodule "HuWNLI"]
 	path = HuWNLI
-	url = https://github.com/nytud/HuWNLI.git
+	url = https://github.com/nytud/HuWNLI
 [submodule "HuSST"]
 	path = HuSST
 	url = https://github.com/nytud/HuSST.git
