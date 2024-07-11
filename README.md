@@ -1,5 +1,5 @@
 # HuLU
-[Hungarian Language Understanding Benchmark Kit](hulu.nytud.hu)
+[Hungarian Language Understanding Benchmark Kit](https://hulu.nytud.hu/)
 
 
 This repository contains the databases included in HuLU, the Hungarian Language Understanding Benchmark Kit developed, maintained and updated in the Language Technology Research Group of the Hungarian Research Centre for Linguistics.
