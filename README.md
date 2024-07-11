@@ -1,5 +1,5 @@
 # HuLU
-Hungarian Language Understanding Benchmark Kit
+(Hungarian Language Understanding Benchmark Kit)[hulu.nytud.hu]
 
 
 This repository contains the databases included in HuLU, the Hungarian Language Understanding Benchmark Kit developed, maintained and updated in the Language Technology Research Group of the Hungarian Research Centre for Linguistics.
@@ -20,16 +20,29 @@ Ligeti-Nagy, N., Ferenczi, G., Héja, E., Jelencsik-Mátyus, K., Laki, L. J., Va
 
 ```
 
-@inproceedings{ligetinagy2022hulu,
-  title={HuLU: magyar nyelvű benchmark adatbázis kiépítése a neurális nyelvmodellek kiértékelése céljából},
-  author={Ligeti-Nagy, N. and Ferenczi, G. and Héja, E. and Jelencsik-Mátyus, K. and Laki, L. J. and Vadász, N. and Yang, Z. Gy. and Váradi, T.},
-  booktitle={XVIII. Magyar Számítógépes Nyelvészeti Konferencia},
-  year={2022},
-  pages = {431--446},
-  editors = {Berend, G. and Gosztolya, G. and Vincze, V.},
-  address = {Szeged},
-  publisher = {Szegedi Tudományegyetem, Informatikai Intézet}
+@inproceedings{ligeti-nagy-etal-2024-hulu-hungarian,
+    title = "{H}u{LU}: {H}ungarian Language Understanding Benchmark Kit",
+    author = "Ligeti-Nagy, No{\'e}mi  and
+      Ferenczi, Gerg{\H{o}}  and
+      H{\'e}ja, Enik{\H{o}}  and
+      Laki, L{\'a}szl{\'o} J{\'a}nos  and
+      Vad{\'a}sz, No{\'e}mi  and
+      Yang, Zijian Gy{\H{o}}z{\H{o}}  and
+      V{\'a}radi, Tam{\'a}s",
+    editor = "Calzolari, Nicoletta  and
+      Kan, Min-Yen  and
+      Hoste, Veronique  and
+      Lenci, Alessandro  and
+      Sakti, Sakriani  and
+      Xue, Nianwen",
+    booktitle = "Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)",
+    month = may,
+    year = "2024",
+    address = "Torino, Italia",
+    publisher = "ELRA and ICCL",
+    url = "https://aclanthology.org/2024.lrec-main.733",
+    pages = "8360--8371",
 }
 ```
 
-and to any other the references listed in the readme files of the individual corpora. 
+and to any other references listed in the readme files of the individual corpora. 
