@@ -11,6 +11,7 @@ from sklearn.metrics import (
     f1_score,
     roc_auc_score,
     confusion_matrix,
+    matthews_corrcoef
 )
 from transformers import TrainingArguments, Trainer
 from transformers import DataCollatorForMultipleChoice
@@ -60,6 +61,7 @@ def compute_metrics(eval_pred):
     precision = precision_score(labels_np, preds_np, average="macro", zero_division=0)
     recall = recall_score(labels_np, preds_np, average="macro", zero_division=0)
     f1 = f1_score(labels_np, preds_np, average="macro")
+    mcc = matthews_corrcoef(labels_np, preds_np)
 
     # specificity (macro)
     cm = confusion_matrix(labels_np, preds_np, labels=np.unique(labels_np))
@@ -85,6 +87,7 @@ def compute_metrics(eval_pred):
         "recall": recall,
         "f1": f1,
         "specificity": specificity,
+        "mcc": mcc,
         "auc": auc
     }
 
