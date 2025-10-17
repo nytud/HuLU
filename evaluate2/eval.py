@@ -1,6 +1,5 @@
 import time
 import logging
-from datetime import datetime
 
 import torch
 import numpy as np
@@ -103,9 +102,9 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
     parameters = helper.read_json(args.parameters_path)
 
     training_args = TrainingArguments(
-        output_dir=f"{args.save_results_path}{task_name}",
+        output_dir=f"{args.save_results_path}{task_name}/{args.run_name}",
         logging_dir=f"{args.save_results_path}{task_name}/logs",
-        run_name=f"hulu-{task_name}-{args.model_name.replace('/', '-')}",
+        run_name=f"{task_name}-{args.run_name}",
         **parameters
     )
 
@@ -117,13 +116,8 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
         data_collator=data_collator,
         compute_metrics=compute_metrics
     )
-    if args.reporting:
-        import mlflow
-        with mlflow.start_run(run_name=args.run_name):
-            trainer.train()
-    else:
-        trainer.train()
+    results = trainer.train()
 
     if args.eval_test:
-        results = trainer.evaluate(eval_dataset=dataset["validation"]) # TODO replace with test set
+        results = trainer.evaluate(eval_dataset=dataset["validation"], metric_key_prefix="test") # TODO replace with test set
     return results
