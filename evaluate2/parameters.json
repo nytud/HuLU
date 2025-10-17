@@ -3,7 +3,7 @@
   "per_device_eval_batch_size": 8,
   "gradient_accumulation_steps": 3,
 
-  "num_train_epochs": 2,
+  "num_train_epochs": 10,
   "learning_rate": 5e-5,
   "weight_decay": 0.0,
   "warmup_ratio": 0.0,
@@ -19,22 +19,19 @@
   "dataloader_pin_memory": true,
   "group_by_length": false,
 
-  "logging_strategy": "steps",
-  "logging_steps": 200,
+  "logging_strategy": "epoch",
 
   "do_eval": true,
-  "eval_strategy": "steps",
-  "eval_steps": 4000,
+  "eval_strategy": "epoch",
 
-  "save_strategy": "steps",
-  "save_steps": 4000,
-  "save_total_limit": 7,
+  "save_strategy": "epoch",
+  "save_total_limit": 3,
 
   "load_best_model_at_end": true,
   "metric_for_best_model": "eval_loss",
   "greater_is_better": false,
 
-  "report_to": null,
+  "report_to": "mlflow",
   "save_safetensors": true,
   "seed": 42,
   "data_seed": 42
