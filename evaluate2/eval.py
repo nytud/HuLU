@@ -119,5 +119,5 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
     results = trainer.train()
 
     if args.eval_test:
-        results = trainer.evaluate(eval_dataset=dataset["validation"], metric_key_prefix="test") # TODO replace with test set
+        results = trainer.evaluate(eval_dataset=dataset["test"], metric_key_prefix="test")
     return results
