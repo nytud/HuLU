@@ -1,3 +1,5 @@
+from typing import Optional
+
 import os
 import json
 import random
@@ -81,14 +83,22 @@ def setup_reporting(args) -> None:
         args.reporting = False
 
 
-def save_results(args, results) -> None:
+def save_results(
+        args,
+        results,
+        task_name: Optional[str] = None,
+        predictions: bool = False
+    ) -> None:
 
     if not args.save_results_path:
         return None
 
     dir_path = pathlib.Path(args.save_results_path)
     current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    eval_name = args.model_name.replace('/', '-') # e.g. google/bert-base-uncased -> google-bert-base-uncased
-    file_name = f"hulu-{eval_name}-results-{current_time}.json"
-
+    eval_name = args.run_name
+    file_name = (
+        f"{task_name if task_name else 'hulu'}-"
+        f"{eval_name}-{'predictions-' if predictions else ''}"
+        f"results-{current_time}.json"
+    )
     save_json(results, dir_path, file_name)

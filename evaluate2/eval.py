@@ -120,6 +120,11 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
 
     if args.eval_test:
         results = trainer.evaluate(eval_dataset=dataset["test"], metric_key_prefix="test")
-    # else: # TODO
-        # prediction_output = trainer.predict(test_ds)
-    return results
+        return results
+
+    # TODO use trainer.prediction() on test set when run from HugginFace,
+    # where test set labels is not available and save results
+    raise NotImplementedError(
+        "Evaluation on test set without labels is not implemented yet. "
+        "Please use local datasets with labels for evaluation for now."
+    )

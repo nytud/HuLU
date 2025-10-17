@@ -93,7 +93,7 @@ def prepare_datasets(args, task_name: str):
     datasets_path = os.getenv('DATASETS')
     if args.eval_test and datasets_path is None:
         raise ValueError(
-            "Local 'DATASETS' env var must be set to evaluate on test set. Please"
+            "Local 'DATASETS' env var must be set to evaluate on test set. "
             "Please use Huggingface hub datasets if you don't have the test set and"
             "submit the results through https://hulu.nytud.hu/"
         )
