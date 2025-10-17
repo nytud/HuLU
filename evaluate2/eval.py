@@ -119,6 +119,8 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
     results = trainer.train()
 
     if args.eval_test:
+        # TODO trainer.evaluate() runs a newly created run for test set
+        # this should be fixed to log under the same run
         results = trainer.evaluate(eval_dataset=dataset["test"], metric_key_prefix="test")
         return results
 

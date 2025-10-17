@@ -53,7 +53,7 @@ def preprocess_fn(examples, tokenizer, tokenizer_params: dict, task_name: str):
         tokenized = preprocess_fn_copa(examples, tokenizer, tokenizer_params, task_name)
         return {**tokenized, "label": label}
 
-    inputs = tuple(examples[col_name] for col_name in constants.RELEVANT_COLUMNS[task_name]),
+    inputs = tuple(examples[col_name] for col_name in constants.RELEVANT_COLUMNS[task_name])
     tokenized = tokenizer(*inputs, **tokenizer_params)
     return {**tokenized, "label": label}
 

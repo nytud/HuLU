@@ -55,6 +55,6 @@ TOKENIZER_PARAMETERS = {
     "husst":  { "truncation": True, "padding": "max_length", "add_special_tokens": True },
 }
 
-CB = "hucb"
+CB = "hucommitmentbank"
 SST = "husst"
 COPA = "hucopa"
