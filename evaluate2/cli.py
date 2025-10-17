@@ -16,9 +16,13 @@ def cli() -> None:
 
     parser.add_argument('--model-name', type=str, metavar='S', help='model name or path')
     parser.add_argument('--tokenizer-name', type=str, metavar='S', help='tokenizer name or path')
-    parser.add_argument('--tasks', type=str, nargs="+", choices=["cola", "rte", "wnli", "cb", "sst", "copa"], help='task name(s)')
+    parser.add_argument(
+        '--tasks', type=str, nargs="+",
+        choices=["hucola", "hurte", "huwnli", "hucommitmentbank", "husst", "hucopa"],
+        help='task name(s)'
+    )
     parser.add_argument("--parameters-path", type=str, default=None, required=True, help="JSON config path for model params")
-    parser.add_argument("--eval-test", type=lambda x: x.lower()=='true', default=True, help='evaluate on test set')
+    parser.add_argument("--eval-test", type=lambda x: x.lower()=='true', default=False, help='evaluate on test set')
 
     parser.add_argument("--report-to", type=str, default=None, help='reporting dest e.g. wandb, mlflow')
     parser.add_argument("--report-uri", type=str, default=None, help='reporting URI for wandb, mlflow')

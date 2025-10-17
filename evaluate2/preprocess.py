@@ -1,3 +1,5 @@
+import os
+import pathlib
 import logging
 from functools import partial
 
@@ -10,8 +12,7 @@ import constants
 
 def preprocess(args, task_name: str):
 
-    dataset_name = constants.HULU_DATASETS[task_name]
-    dataset = load_dataset(dataset_name)
+    dataset = prepare_datasets(args, task_name)
 
     # tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_name)
     tokenizer = load_tokenizer(args)
@@ -83,3 +84,35 @@ def preprocess_fn_copa(examples, tokenizer, tokenizer_params: dict, task_name: s
     attention_mask = torch.tensor([x["attention_mask"] for x in tokenized_choices])
 
     return {"input_ids": input_ids, "attention_mask": attention_mask}
+
+
+def prepare_datasets(args, task_name: str):
+
+    dataset_name = constants.HULU_DATASETS[task_name]
+
+    datasets_path = os.getenv('DATASETS')
+    if args.eval_test and datasets_path is None:
+        raise ValueError(
+            "Local 'DATASETS' env var must be set to evaluate on test set. Please"
+            "Please use Huggingface hub datasets if you don't have the test set and"
+            "submit the results through https://hulu.nytud.hu/"
+        )
+    if datasets_path is None:
+        logging.info(
+            f"Loading dataset {dataset_name} from Huggingface hub. Test set not available."
+            "Please use Huggingface hub datasets and submit the results through https://hulu.nytud.hu/"
+        )
+        dataset = load_dataset(dataset_name)
+    else:
+        logging.info(f"Loading dataset {task_name} from local path: {datasets_path}")
+        datasets_path = pathlib.Path(datasets_path)
+        task_dataset_path = datasets_path / task_name
+        assert task_dataset_path.exists(), f"Dataset path {task_dataset_path} does not exist."
+        dataset = load_dataset("json", data_files={
+            "train": str(task_dataset_path / "train.json"),
+            "validation": str(task_dataset_path / "val.json"),
+            "test": str(task_dataset_path / "test.json")
+        })
+        logging.info(f"Loaded dataset files from {task_dataset_path}")
+
+    return dataset

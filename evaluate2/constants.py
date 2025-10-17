@@ -20,41 +20,41 @@ LABELS.update(SST_LABELS)
 LABELS.update(CB_LABELS)
 
 HULU_DATASETS = {
-    "sst": "NYTK/HuSST",
-    "rte": "NYTK/HuRTE",
-    "wnli": "NYTK/HuWNLI",
-    "cola": "NYTK/HuCOLA",
-    "copa": "NYTK/HuCoPA",
-    "cb": "NYTK/HuCommitmentBank",
+    "husst": "NYTK/HuSST",
+    "hurte": "NYTK/HuRTE",
+    "huwnli": "NYTK/HuWNLI",
+    "hucola": "NYTK/HuCOLA",
+    "hucopa": "NYTK/HuCoPA",
+    "hucommitmentbank": "NYTK/HuCommitmentBank",
 }
 
 IRRELEVANT_COLUMNS = {
-    "cola": ["id", "sentence"],
-    "sst": ["id", "sentence"],
-    "wnli": ["id", "sentence1", "sentence2", "orig_id"],
-    "rte": ["id", "premise", "hypothesis"],
-    "cb": ["id", "premise", "hypothesis"],
-    "copa": ["id", "choice1", "choice2", "question"],
+    "hucola": ["id", "sentence"],
+    "husst": ["id", "sentence"],
+    "huwnli": ["id", "sentence1", "sentence2", "orig_id"],
+    "hurte": ["id", "premise", "hypothesis"],
+    "hucommitmentbank": ["id", "premise", "hypothesis"],
+    "hucopa": ["id", "choice1", "choice2", "question"],
 }
 
 RELEVANT_COLUMNS = {
-    "cola": ["sentence"],
-    "sst": ["sentence"],
-    "wnli": ["sentence1", "sentence1"],
-    "rte": ["premise", "hypothesis"],
-    "cb": ["premise", "hypothesis"],
-    "copa": ["premise", "choice1", "choice2", "question"],
+    "hucola": ["sentence"],
+    "husst": ["sentence"],
+    "huwnli": ["sentence1", "sentence1"],
+    "hurte": ["premise", "hypothesis"],
+    "hucommitmentbank": ["premise", "hypothesis"],
+    "hucopa": ["premise", "choice1", "choice2", "question"],
 }
 
 TOKENIZER_PARAMETERS = {
-    "wnli": { "truncation": True, "padding": "max_length" },
-    "rte":  { "truncation": True, "padding": "max_length" },
-    "cb":   { "truncation": True, "padding": "max_length", "max_length": 512 },
-    "copa": { "truncation": True, "padding": "max_length", "max_length": 256 },
-    "cola": { "truncation": True, "padding": "max_length", "add_special_tokens": True },
-    "sst":  { "truncation": True, "padding": "max_length", "add_special_tokens": True },
+    "huwnli": { "truncation": True, "padding": "max_length" },
+    "hurte":  { "truncation": True, "padding": "max_length" },
+    "hucommitmentbank":   { "truncation": True, "padding": "max_length", "max_length": 512 },
+    "hucopa": { "truncation": True, "padding": "max_length", "max_length": 256 },
+    "hucola": { "truncation": True, "padding": "max_length", "add_special_tokens": True },
+    "husst":  { "truncation": True, "padding": "max_length", "add_special_tokens": True },
 }
 
-CB = "cb"
-SST = "sst"
-COPA = "copa"
+CB = "hucb"
+SST = "husst"
+COPA = "hucopa"

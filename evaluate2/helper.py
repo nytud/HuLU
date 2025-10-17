@@ -2,6 +2,7 @@ import os
 import json
 import random
 import pathlib
+import logging
 from datetime import datetime
 
 import torch
@@ -45,7 +46,7 @@ def save_json(data, dir_path, file_name: str) -> None:
 
 
 def setup_reporting(args) -> None:
-    print("Setting up reporting...")
+    logging.info("Setting up reporting...")
 
     if args.report_to.lower() == 'wandb':
         try:

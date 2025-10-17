@@ -120,4 +120,6 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
 
     if args.eval_test:
         results = trainer.evaluate(eval_dataset=dataset["test"], metric_key_prefix="test")
+    # else: # TODO
+        # prediction_output = trainer.predict(test_ds)
     return results
