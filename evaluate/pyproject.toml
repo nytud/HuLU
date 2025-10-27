@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hulu_evaluate"
+name = "hulu"
 version = "0.0.2"
-description = "Client library to train and evaluate models on the HuLu benchmark."
+description = "Client library to fine-tune and evaluate models on the HuLU benchmark."
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "Apache" }
@@ -47,21 +47,15 @@ dependencies = [
     "scikit-learn==1.5.1",
     "transformers==4.44.0",
     "urllib3==2.2.2",
-    accelerate
+    "accelerate"
 ]
-
-[project.optional-dependencies]
-dev = ["ruff>=0.5.0", "black", "isort"]
 
 [project.urls]
 Homepage = "https://hulu.nytud.hu/"
 Repository = "https://github.com/nytud/HuLU"
 
 [project.scripts]
-hulu-evaluate = "cli.cli:cli"
+hulu = "cli:cli"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
-
-[tool.setuptools.packages.find]
-where = ["src"]
