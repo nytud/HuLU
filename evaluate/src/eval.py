@@ -1,3 +1,5 @@
+from typing import Optional
+
 import time
 import logging
 
@@ -92,7 +94,7 @@ def compute_metrics(eval_pred):
     }
 
 
-def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
+def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
 
     if task_name == constants.COPA:
         data_collator = DataCollatorForMultipleChoice(tokenizer=tokenizer)
@@ -122,14 +124,16 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> dict:
     results = trainer.train()
 
     if args.eval_test:
-        # TODO trainer.evaluate() runs a newly created run for test set
-        # this should be fixed to log under the same run
+        # TODO trainer.evaluate() runs a newly created mlflow run for test set, fix later
         results = trainer.evaluate(eval_dataset=dataset["test"], metric_key_prefix="test")
         return results
 
-    # TODO use trainer.prediction() on test set when run from HugginFace,
-    # where test set labels is not available and save results
-    raise NotImplementedError(
-        "Evaluation on test set without labels is not implemented yet. "
-        "Please use local datasets with labels for evaluation for now."
-    )
+    results = trainer.predict(dataset["test"])
+
+    logits = results.predictions
+    predictions = np.argmax(logits, axis=1).tolist()
+
+    helper.save_results_for_submission(args, task_name, predictions)
+
+    return None
+

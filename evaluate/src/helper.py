@@ -2,18 +2,11 @@ from typing import Optional
 
 import os
 import json
-import random
 import pathlib
 import logging
 from datetime import datetime
 
-import torch
-
-
-def set_seeds(args) -> None:
-    random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed(args.seed)
+import constants
 
 
 def read_file(file_path, readlines: bool = False):
@@ -98,7 +91,26 @@ def save_results(
     eval_name = args.run_name
     file_name = (
         f"{task_name if task_name else 'hulu'}-"
-        f"{eval_name}-{'predictions-' if predictions else ''}"
+        f"{eval_name}-{'test-set-predictions-' if predictions else ''}"
         f"results-{current_time}.json"
     )
     save_json(results, dir_path, file_name)
+
+
+def save_results_for_submission(args, task_name: str, predictions: list) -> None:
+
+    if task_name == constants.SST:
+        id2label = {v: k for k, v in constants.SST_LABELS.items()}
+    elif task_name == constants.CB:
+        id2label = {v: k for k, v in constants.CB_LABELS.items()}
+    else:
+        id2label = None
+
+    results = [
+        {
+            "id": str(i),
+            "label": id2label[prediction] if id2label else str(prediction),
+        }
+        for i, prediction in enumerate(predictions)
+    ]
+    save_results(args, results, task_name, predictions=True)
