@@ -4,19 +4,21 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hulu"
-version = "0.0.2"
+version = "0.0.3"
 description = "Client library to fine-tune and evaluate models on the HuLU benchmark."
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "Apache" }
 authors = [
-  { name = "HUN-REN Research Center for Linguistics", email = "varga.kristof@nytud.hun-ren.hu" }
+  { name = "ELTE Research Center for Linguistics", email = "varga.kristof@nytud.elte.hu" },
+  { name = "ELTE Research Center for Linguistics", email = "osvath.matyas@nytud.elte.hu" }
 ]
 keywords = [
+  "artificial-intelligence",
   "machine-learning",
-  "models",
-  "natural-language-processing",
   "deep-learning",
+  "natural-language-processing",
+  "fine-tuning",
   "evaluation",
   "benchmark"
 ]
@@ -35,19 +37,13 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Artificial Intelligence"
 ]
 dependencies = [
-    "huggingface-hub==0.27.1",
-    "datasets==3.2.0",
-    "evaluate==0.4.3",
-    "packaging==24.1",
-    "pandas==2.2.2",
-    "peft==0.14.0",
-    "pyarrow==19.0.0",
-    "pydantic==2.8.2",
-    "requests==2.32.3",
-    "scikit-learn==1.5.1",
-    "transformers==4.44.0",
-    "urllib3==2.2.2",
-    "accelerate"
+    "huggingface-hub",
+    "datasets",
+    "torch",
+    "scikit-learn",
+    "transformers",
+    "accelerate",
+    "numpy"
 ]
 
 [project.urls]
