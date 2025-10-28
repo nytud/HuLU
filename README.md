@@ -14,7 +14,7 @@ Currently (11/07/2024) six corpora are available to download and to test the mod
 - **HuCB** (Hungarian CommitmentBank) consists of short text fragments in which at least one sentence contains a subordinating clause, which is syntactically subordinated to a logical inference-canceling operator. In the database, the premise is the complete text fragment and the hypothesis is the embedded tag clause. In the inference task, it is necessary to decide to what extent the author of the text is committed to the truth of the subordinate clause. The corpus consists of a training, a validation, and a test set (of 250, 103, and 250 examples, respectively).
 
 
-## Evaluation
+## Evaluation
 
 An evaluation library / script is provided for fine-tuning and benchmarking language models on Hungarian tasks within the [HuLU benchmark](https://hulu.nytud.hu/).
 
