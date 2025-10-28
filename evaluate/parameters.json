@@ -3,7 +3,7 @@
   "per_device_eval_batch_size": 8,
   "gradient_accumulation_steps": 3,
 
-  "num_train_epochs": 10,
+  "num_train_epochs": 1,
   "learning_rate": 5e-5,
   "weight_decay": 0.0,
   "warmup_ratio": 0.0,
@@ -32,7 +32,7 @@
   "metric_for_best_model": "eval_balanced_accuracy",
   "greater_is_better": true,
 
-  "report_to": ["mlflow"],
+  "report_to": null,
   "save_safetensors": true,
   "seed": 42,
   "data_seed": 42
