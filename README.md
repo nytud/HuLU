@@ -49,16 +49,16 @@ Below are the supported command-line arguments.
 
 | Option | Description |
 |--------|-------------|
-| `--model-name <STR>` | **(Required)** Name or path of the pretrained model to load. |
-| `--parameters-path <PATH>` | **(Required)** Path to the JSON configuration file containing training hyperparameters (e.g., `parameters.json`). |
-| `--tokenizer-name <STR>` | Name or path of the tokenizer. Defaults to the model’s tokenizer if not specified. |
-| `--tasks <LIST>` | List of HuLU tasks to run. Choices: `hucola`, `hurte`, `huwnli`, `hucommitmentbank`, `husst`, `hucopa`. |
+| `--model-name <str>` | **(Required)** Name or path of the pretrained model to load. |
+| `--parameters-path <path>` | **(Required)** Path to the JSON configuration file containing training hyperparameters (e.g., `parameters.json`). |
+| `--tokenizer-name <str>` | Name or path of the tokenizer. Defaults to the model’s tokenizer if not specified. |
+| `--tasks <list>` | List of HuLU tasks to run. Choices: `hucola`, `hurte`, `huwnli`, `hucommitmentbank`, `husst`, `hucopa`. |
 | `--eval-test <true/false>` | Whether to evaluate on the test set after training. Default: `false`. |
-| `--report-to <STR>` | Reporting backend (e.g., `wandb`, `mlflow`). |
-| `--report-uri <STR>` | URI for the selected reporting backend. |
-| `--experiment-name <STR>` | Experiment/project name used for reporting. Default: `hulu-finetune`. |
-| `--run-name <STR>` | Custom run name used for logging and reporting. |
-| `--save-results-path <PATH>` | Directory to save prediction outputs and logs. Default: `./results/`. |
+| `--report-to <str>` | Reporting backend (e.g., `wandb`, `mlflow`). |
+| `--report-uri <str>` | URI for the selected reporting backend. |
+| `--experiment-name <str>` | Experiment/project name used for reporting. Default: `hulu-finetune`. |
+| `--run-name <str>` | Custom run name used for logging and reporting. |
+| `--save-results-path <path>` | Directory to save prediction outputs and logs. Default: `./results/`. |
 
 ---
 
