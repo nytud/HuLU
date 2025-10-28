@@ -88,10 +88,11 @@ def save_results(
 
     dir_path = pathlib.Path(args.save_results_path)
     current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    eval_name = args.run_name
+    eval_name = args.run_name if args.run_name else ""
     file_name = (
         f"{task_name if task_name else 'hulu'}-"
-        f"{eval_name}-{'test-set-predictions-' if predictions else ''}"
+        f"{eval_name + '-' if eval_name else ''}"
+        f"{'test-set-predictions-' if predictions else ''}"
         f"results-{current_time}.json"
     )
     save_json(results, dir_path, file_name)

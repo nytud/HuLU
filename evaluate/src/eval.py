@@ -107,9 +107,9 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
     parameters = helper.read_json(args.parameters_path)
 
     training_args = TrainingArguments(
-        output_dir=f"{args.save_results_path}{task_name}/{args.run_name}",
+        output_dir=f"{args.save_results_path}{task_name}/{args.run_name if args.run_name else ''}",
         logging_dir=f"{args.save_results_path}{task_name}/logs",
-        run_name=f"{task_name}-{args.run_name}",
+        run_name=f"{task_name}-{args.run_name if args.run_name else ''}",
         **parameters
     )
 
