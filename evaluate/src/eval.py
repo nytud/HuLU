@@ -16,7 +16,6 @@ from sklearn.metrics import (
     matthews_corrcoef
 )
 from transformers import TrainingArguments, Trainer
-from transformers import DataCollatorForMultipleChoice
 from transformers import AutoModelForMultipleChoice, AutoModelForSequenceClassification
 
 import helper
@@ -97,10 +96,8 @@ def compute_metrics(eval_pred):
 def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
 
     if task_name == constants.COPA:
-        data_collator = DataCollatorForMultipleChoice(tokenizer=tokenizer)
         model = AutoModelForMultipleChoice.from_pretrained(args.model_name, ignore_mismatched_sizes=True)
     else:
-        data_collator = None
         model_kwargs = {"num_labels": 3} if task_name in [constants.CB, constants.SST] else {"num_labels": 2}
         model = AutoModelForSequenceClassification.from_pretrained(args.model_name, **model_kwargs)
 
@@ -118,7 +115,6 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
         args=training_args,
         train_dataset=dataset["train"],
         eval_dataset=dataset["validation"],
-        data_collator=data_collator,
         compute_metrics=compute_metrics
     )
     results = trainer.train()
