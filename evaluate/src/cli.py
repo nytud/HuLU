@@ -29,7 +29,6 @@ def cli() -> None:
     parser.add_argument("--run-name", type=str, default=None, help='run name for reporting')
 
     parser.add_argument("--save-results-path", type=str, default="./results/", help='save results')
-    parser.add_argument('--seed', type=int, default=42, help='random seed')
 
     args = parser.parse_args()
 

@@ -22,7 +22,7 @@ It provides a unified CLI tool for running experiments across all six tasks, wit
 
 ### Installation
 
-#### PyPi
+Installation via pypi
 
 ```bash
 pip install hulu
@@ -34,6 +34,38 @@ To install the library for testing and development, clone the repository and ins
 git clone git@github.com:nytud/HuLU.git
 cd evaluate/
 pip install .
+```
+
+### Usage
+
+The CLI provides a unified interface for configuring and running HuLU model evaluation and fine-tuning.
+
+
+```bash
+hulu <command> [<args>]
+```
+
+Below are the supported command-line arguments.
+
+| Option | Description |
+|--------|-------------|
+| `--model-name <STR>` | **(Required)** Name or path of the pretrained model to load. |
+| `--parameters-path <PATH>` | **(Required)** Path to the JSON configuration file containing training hyperparameters (e.g., `parameters.json`). |
+| `--tokenizer-name <STR>` | Name or path of the tokenizer. Defaults to the model’s tokenizer if not specified. |
+| `--tasks <LIST>` | List of HuLU tasks to run. Choices: `hucola`, `hurte`, `huwnli`, `hucommitmentbank`, `husst`, `hucopa`. |
+| `--eval-test <true/false>` | Whether to evaluate on the test set after training. Default: `false`. |
+| `--report-to <STR>` | Reporting backend (e.g., `wandb`, `mlflow`). |
+| `--report-uri <STR>` | URI for the selected reporting backend. |
+| `--experiment-name <STR>` | Experiment/project name used for reporting. Default: `hulu-finetune`. |
+| `--run-name <STR>` | Custom run name used for logging and reporting. |
+| `--save-results-path <PATH>` | Directory to save prediction outputs and logs. Default: `./results/`. |
+
+---
+
+#### Example Usage
+
+```bash
+hulu --model-name distilbert/distilbert-base-uncased --tasks hucola husst --parameters ./parameters.json --experiment-name test-experiment --eval-test false
 ```
 
 ### Submitting the Results to the HuLU Leaderboard
