@@ -2,7 +2,6 @@ import os
 import logging
 import argparse
 
-import helper
 import eval as evaluate
 
 
@@ -14,7 +13,7 @@ def cli() -> None:
 
     parser = argparse.ArgumentParser(description='hugme cli tool')
 
-    parser.add_argument('--model-name', type=str, metavar='S', help='model name or path')
+    parser.add_argument('--model-name', type=str, metavar='S', required=True, help='model name or path')
     parser.add_argument('--tokenizer-name', type=str, metavar='S', help='tokenizer name or path')
     parser.add_argument(
         '--tasks', type=str, nargs="+",
@@ -33,8 +32,6 @@ def cli() -> None:
     parser.add_argument('--seed', type=int, default=42, help='random seed')
 
     args = parser.parse_args()
-
-    helper.set_seeds(args)
 
     evaluate.evaluate(args)
 
