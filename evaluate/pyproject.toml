@@ -43,6 +43,7 @@ dependencies = [
     "scikit-learn",
     "transformers",
     "accelerate",
+    "peft",
     "numpy"
 ]
 

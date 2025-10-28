@@ -35,5 +35,13 @@
   "report_to": null,
   "save_safetensors": true,
   "seed": 42,
-  "data_seed": 42
+  "data_seed": 42,
+
+  "lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "bias": "none",
+    "target_modules": null
+  }
 }

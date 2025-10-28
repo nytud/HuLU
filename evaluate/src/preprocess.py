@@ -25,7 +25,7 @@ def preprocess(args, task_name: str):
 
     dataset = dataset.map(process_fn, remove_columns=remove_columns)
 
-    return dataset, tokenizer
+    return dataset
 
 
 def preprocess_fn(examples, tokenizer, tokenizer_params: dict, task_name: str):

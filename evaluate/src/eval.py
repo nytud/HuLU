@@ -15,6 +15,7 @@ from sklearn.metrics import (
     confusion_matrix,
     matthews_corrcoef
 )
+from peft import LoraConfig, get_peft_model
 from transformers import TrainingArguments, Trainer
 from transformers import AutoModelForMultipleChoice, AutoModelForSequenceClassification
 
@@ -37,8 +38,8 @@ def evaluate(args) -> None:
         logging.info(f"Started evaluation for {task_name}.")
         task_start_time = time.time()
 
-        dataset, tokenizer = preprocess(args, task_name)
-        results = fine_tune(args, dataset, tokenizer, task_name)
+        dataset = preprocess(args, task_name)
+        results = fine_tune(args, dataset, task_name)
         score_results[task_name] = results
 
         logging.info(f"Task {task_name} took {time.time() - task_start_time:.3f} seconds.")
@@ -93,7 +94,7 @@ def compute_metrics(eval_pred):
     }
 
 
-def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
+def fine_tune(args, dataset, task_name: str) -> Optional[dict]:
 
     if task_name == constants.COPA:
         model = AutoModelForMultipleChoice.from_pretrained(args.model_name, ignore_mismatched_sizes=True)
@@ -102,6 +103,12 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
         model = AutoModelForSequenceClassification.from_pretrained(args.model_name, **model_kwargs)
 
     parameters = helper.read_json(args.parameters_path)
+
+    if parameters.get("lora", False):
+        lora_params = parameters.pop("lora")
+        config = LoraConfig(**lora_params)
+        model = get_peft_model(model, config)
+        logging.info("LoRA parameters added to the model.")
 
     training_args = TrainingArguments(
         output_dir=f"{args.save_results_path}{task_name}/{args.run_name if args.run_name else ''}",
@@ -132,4 +139,3 @@ def fine_tune(args, dataset, tokenizer, task_name: str) -> Optional[dict]:
     helper.save_results_for_submission(args, task_name, predictions)
 
     return None
-
