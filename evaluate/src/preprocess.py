@@ -14,7 +14,8 @@ def preprocess(args, task_name: str):
 
     dataset = prepare_datasets(args, task_name)
 
-    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_name)
+    tokenizer_name = args.tokenizer_name if args.tokenizer_name else args.model_name
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
     tokenizer_params = constants.TOKENIZER_PARAMETERS[task_name]
 
     process_fn = partial(
@@ -23,7 +24,6 @@ def preprocess(args, task_name: str):
     remove_columns = constants.IRRELEVANT_COLUMNS.get(task_name)
 
     dataset = dataset.map(process_fn, remove_columns=remove_columns)
-    logging.info(dataset)
 
     return dataset, tokenizer
 
@@ -82,8 +82,8 @@ def prepare_datasets(args, task_name: str):
         )
     if datasets_path is None:
         logging.info(
-            f"Loading dataset {dataset_name} from Huggingface hub. Test set not available."
-            "Please use Huggingface hub datasets and submit the results through https://hulu.nytud.hu/"
+            f"Loading dataset {dataset_name} from Huggingface hub. Test set not available. "
+            "When using dataset from Huggingface Hub, please submit the results through https://hulu.nytud.hu/"
         )
         dataset = load_dataset(dataset_name)
     else:
