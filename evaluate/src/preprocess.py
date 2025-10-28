@@ -5,7 +5,7 @@ from functools import partial
 
 import torch
 from datasets import load_dataset
-from transformers import PreTrainedTokenizerFast, AutoTokenizer
+from transformers import AutoTokenizer
 
 import constants
 
@@ -14,8 +14,7 @@ def preprocess(args, task_name: str):
 
     dataset = prepare_datasets(args, task_name)
 
-    # tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_name)
-    tokenizer = load_tokenizer(args)
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_name)
     tokenizer_params = constants.TOKENIZER_PARAMETERS[task_name]
 
     process_fn = partial(
@@ -27,22 +26,6 @@ def preprocess(args, task_name: str):
     logging.info(dataset)
 
     return dataset, tokenizer
-
-
-def load_tokenizer(args):
-    tokenizer = PreTrainedTokenizerFast(
-        tokenizer_file = args.tokenizer_name,
-        unk_token="[UNK]",
-        pad_token="[PAD]",
-        cls_token="[CLS]",
-        sep_token="[SEP]",
-        mask_token="[MASK]",
-    )
-    logging.info(f"Loaded tokenizer from {args.tokenizer_name}")
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.model_max_length = 1024 # TODO make configurable
-    return tokenizer
 
 
 def preprocess_fn(examples, tokenizer, tokenizer_params: dict, task_name: str):
