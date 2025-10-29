@@ -1,4 +1,3 @@
-results/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -50,3 +49,10 @@ env.bak/
 venv.bak/
 
 /.venv
+/src/hulu-evaluate/wandb
+/src/hulu-evaluate/models
+/src/hulu-evaluate/configs
+/src/hulu-evaluate/SZTAKI-HLT
+/src/hulu-evaluate/NYTK
+
+/src/hulu-evaluate/predictions

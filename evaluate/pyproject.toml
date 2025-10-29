@@ -1,24 +1,22 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hulu"
-version = "0.0.3"
-description = "Client library to fine-tune and evaluate models on the HuLU benchmark."
+name = "hulu_evaluate"
+version = "0.0.2"
+description = "Client library to train and evaluate models on the HuLu benchmark."
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "Apache" }
 authors = [
-  { name = "ELTE Research Center for Linguistics", email = "varga.kristof@nytud.elte.hu" },
-  { name = "ELTE Research Center for Linguistics", email = "osvath.matyas@nytud.elte.hu" }
+  { name = "HUN-REN Research Center for Linguistics", email = "varga.kristof@nytud.hun-ren.hu" }
 ]
 keywords = [
-  "artificial-intelligence",
   "machine-learning",
-  "deep-learning",
+  "models",
   "natural-language-processing",
-  "fine-tuning",
+  "deep-learning",
   "evaluation",
   "benchmark"
 ]
@@ -37,22 +35,32 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Artificial Intelligence"
 ]
 dependencies = [
-    "huggingface-hub",
-    "datasets",
-    "torch",
-    "scikit-learn",
-    "transformers",
-    "accelerate",
-    "peft",
-    "numpy"
+    "huggingface-hub==0.27.1",
+    "datasets==3.2.0",
+    "evaluate==0.4.3",
+    "packaging==24.1",
+    "pandas==2.2.2",
+    "peft==0.14.0",
+    "pyarrow==19.0.0",
+    "pydantic==2.8.2",
+    "requests==2.32.3",
+    "scikit-learn==1.5.1",
+    "transformers==4.44.0",
+    "urllib3==2.2.2"
 ]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.5.0", "black", "isort"]
 
 [project.urls]
 Homepage = "https://hulu.nytud.hu/"
 Repository = "https://github.com/nytud/HuLU"
 
 [project.scripts]
-hulu = "cli:cli"
+hulu-evaluate = "cli.cli:cli"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
