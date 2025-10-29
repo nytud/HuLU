@@ -29,5 +29,5 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         python3 -m build evaluate/
-        twine check dist/*
-        twine upload dist/*
+        twine check evaluate/dist/*
+        twine upload evaluate/dist/*

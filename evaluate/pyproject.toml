@@ -3,10 +3,10 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hulu"
+name = "hulu-evaluate"
 version = "0.0.3"
 description = "Client library to fine-tune and evaluate models on the HuLU benchmark."
-readme = "README.md"
+readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.8"
 license = { text = "Apache" }
 authors = [
