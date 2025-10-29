@@ -1,0 +1,47 @@
+{
+  "per_device_train_batch_size": 32,
+  "per_device_eval_batch_size": 8,
+  "gradient_accumulation_steps": 3,
+
+  "num_train_epochs": 1,
+  "learning_rate": 5e-5,
+  "weight_decay": 0.0,
+  "warmup_ratio": 0.0,
+  "lr_scheduler_type": "linear",
+  "optim": "adamw_torch",
+  "max_grad_norm": 1.0,
+
+  "fp16": true,
+
+  "gradient_checkpointing": false,
+  "torch_compile": false,
+  "dataloader_num_workers": 0,
+  "dataloader_pin_memory": true,
+  "group_by_length": false,
+
+  "logging_strategy": "epoch",
+
+  "do_train": true,
+  "do_eval": true,
+  "eval_strategy": "epoch",
+
+  "save_strategy": "epoch",
+  "save_total_limit": 3,
+
+  "load_best_model_at_end": true,
+  "metric_for_best_model": "eval_balanced_accuracy",
+  "greater_is_better": true,
+
+  "report_to": null,
+  "save_safetensors": true,
+  "seed": 42,
+  "data_seed": 42,
+
+  "lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "bias": "none",
+    "target_modules": null
+  }
+}
