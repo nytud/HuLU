@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hulu-evaluate"
-version = "0.0.3"
+version = "0.0.5"
 description = "Client library to fine-tune and evaluate models on the HuLU benchmark."
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.8"
