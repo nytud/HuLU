@@ -16,6 +16,11 @@ def preprocess(args, task_name: str):
 
     tokenizer_name = args.tokenizer_name if args.tokenizer_name else args.model_name
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
+    print(tokenizer.pad_token, tokenizer.eos_token)
+    print(tokenizer.pad_token_id, tokenizer.eos_token_id)
+    if tokenizer.pad_token is None:
+        print(f"Tokenizer {tokenizer_name} has no pad token. Setting pad token to eos token.")
+        tokenizer.pad_token = tokenizer.eos_token
     tokenizer_params = constants.TOKENIZER_PARAMETERS[task_name]
 
     process_fn = partial(
@@ -23,9 +28,14 @@ def preprocess(args, task_name: str):
     )
     remove_columns = constants.IRRELEVANT_COLUMNS.get(task_name)
 
-    dataset = dataset.map(process_fn, remove_columns=remove_columns)
+    dataset = dataset.map(process_fn, remove_columns=remove_columns, load_from_cache_file=False)
 
-    return dataset
+    for split in dataset.keys():
+        print(f"Processed {split} split with {len(dataset[split])} examples.")
+        for i in range(min(3, len(dataset[split]))):
+            print(f"Example {i}: {dataset[split][i]}")
+
+    return dataset, tokenizer.pad_token_id
 
 
 def preprocess_fn(examples, tokenizer, tokenizer_params: dict, task_name: str):

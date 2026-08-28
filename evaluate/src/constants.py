@@ -47,12 +47,12 @@ RELEVANT_COLUMNS = {
 }
 
 TOKENIZER_PARAMETERS = {
-    "huwnli": { "truncation": True, "padding": "max_length" },
-    "hurte":  { "truncation": True, "padding": "max_length" },
-    "hucommitmentbank":   { "truncation": True, "padding": "max_length", "max_length": 512 },
-    "hucopa": { "truncation": True, "padding": "max_length", "max_length": 256 },
-    "hucola": { "truncation": True, "padding": "max_length", "add_special_tokens": True },
-    "husst":  { "truncation": True, "padding": "max_length", "add_special_tokens": True },
+    "huwnli":           { "truncation": True, "padding": "max_length", "max_length": 512 },
+    "hurte":            { "truncation": True, "padding": "max_length", "max_length": 512 },
+    "hucommitmentbank": { "truncation": True, "padding": "max_length", "max_length": 512 },
+    "hucopa":           { "truncation": True, "padding": "max_length", "max_length": 512 },
+    "hucola":           { "truncation": True, "padding": "max_length", "max_length": 512, "add_special_tokens": True },
+    "husst":            { "truncation": True, "padding": "max_length", "max_length": 512, "add_special_tokens": True },
 }
 
 CB = "hucommitmentbank"

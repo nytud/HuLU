@@ -1,12 +1,6 @@
-import os
-import logging
 import argparse
 
 import eval as evaluate
-
-
-log_level = int(os.getenv('LOG_LEVEL', logging.INFO))
-logging.basicConfig(level=log_level, format="%(asctime)s %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 
 
 def cli() -> None:
@@ -22,6 +16,9 @@ def cli() -> None:
     )
     parser.add_argument("--parameters-path", type=str, default=None, required=True, help="JSON config path for model params")
     parser.add_argument("--eval-test", type=lambda x: x.lower()=='true', default=False, help='evaluate on test set')
+
+    parser.add_argument("--hp-search", action="store_true", help='run an Optuna hyperparameter search instead of a single training run')
+    parser.add_argument("--hp-trials", type=int, default=20, help='number of Optuna trials for hyperparameter search')
 
     parser.add_argument("--report-to", type=str, default=None, help='reporting dest e.g. wandb, mlflow')
     parser.add_argument("--report-uri", type=str, default=None, help='reporting URI for wandb, mlflow')

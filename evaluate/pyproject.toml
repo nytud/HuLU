@@ -44,7 +44,8 @@ dependencies = [
     "transformers",
     "accelerate",
     "peft",
-    "numpy"
+    "numpy",
+    "optuna"
 ]
 
 [project.urls]
